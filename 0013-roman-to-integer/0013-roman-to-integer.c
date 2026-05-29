@@ -1,5 +1,3 @@
-int getIntValue(char c);
-
 int getIntValue(char c){
     switch (c){
             case 'I':
