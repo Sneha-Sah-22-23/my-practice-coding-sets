@@ -1,55 +1,41 @@
+int getIntValue(char c);
+
+int getIntValue(char c){
+    switch (c){
+            case 'I':
+            return 1;
+            case 'V':
+            return 5;
+            case 'X':
+            return 10;
+            case 'L':
+            return 50;
+            case 'C':
+            return 100;
+            case 'D':
+            return 500;
+            case 'M':
+            return 1000;
+            default: return 0;}
+}
+
+
 int romanToInt(char* s) {
     int i = 0; int num = 0;
     while (s[i] != '\0'){
-        if (s[i] == 'I' && s[i+1] == 'V'){
-            num += 4;
-            i++;
+        int l = getIntValue(s[i]); int r =0;
+        if (s[i+1] != '\0'){
+            r = getIntValue(s[i+1]);
         }
-        else if (s[i] == 'I' && s[i+1] == 'X'){
-            num += 9;
-            i++;
-        }
-        else if (s[i] == 'X' && s[i+1] == 'L'){
-            num += 40;
-            i++;
-        }
-        else if (s[i] == 'X' && s[i+1] == 'C'){
-            num += 90;
-            i++;
-        }
-        else if (s[i] == 'C' && s[i+1] == 'D'){
-            num += 400;
-            i++;
-        }
-        else if (s[i] == 'C' && s[i+1] == 'M'){
-            num += 900;
-            i++;
+
+        if(l < r){
+            num -= l;
+            i ++;
         }
         else{
-            switch (s[i]){
-            case 'I':
-            num += 1;
-            break;
-            case 'V':
-            num += 5;
-            break;
-            case 'X':
-            num += 10;
-            break;
-            case 'L':
-            num += 50;
-            break;
-            case 'C':
-            num += 100;
-            break;
-            case 'D':
-            num += 500;
-            break;
-            case 'M':
-            num += 1000;
-            break;}
+            num += l;
+            i++;
         }
-        i++;
     }
     return num;
 }
